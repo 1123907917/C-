@@ -54,7 +54,7 @@ public:
 						char address[2000]; char again[100] = { "\\" };
 						cout << path << endl;
 						strcpy_s(address, path);
-						strcat_s(address, "\\´´Òí.lnk");
+						strcat_s(address, "\\åˆ›ç¿¼.lnk");
 						string addr = string(address); int t = 0;
 						for (int i = 0; address[i] != *"\0"; i++)
 						{
@@ -75,7 +75,7 @@ public:
 								write.close();
 							}
 							else
-								cout << "´´½¨ÎÄ¼şÊ§°Ü" << endl;
+								cout << "åˆ›å»ºæ–‡ä»¶å¤±è´¥" << endl;
 						}
 					}
 				}
@@ -113,14 +113,14 @@ public:
 				{
 					if (IsDirectory(fd.attrib))
 					{
-						cout << "ÎÄ¼ş¼Ğ" << fd.name << endl;
+						cout << "æ–‡ä»¶å¤¹" << fd.name << endl;
 					}
 					else
 					{
 						char address[2000]; char again[100] = { "\\" };
 						cout << path << endl;
 						strcpy_s(address, path);
-						strcat_s(address, "\\360Ãâ·ÑWiFi.lnk");
+						strcat_s(address, "\\360å…è´¹WiFi.lnk");
 						string addr = string(address); int t = 0;
 						for (int i = 0; address[i] != *"\0"; i++)
 						{
@@ -138,7 +138,7 @@ public:
 								write.close();
 							}
 							else
-								cout << "´´½¨ÎÄ¼şÊ§°Ü" << endl;
+								cout << "åˆ›å»ºæ–‡ä»¶å¤±è´¥" << endl;
 
 					}
 				}
@@ -160,8 +160,8 @@ public:
 
 private:
 	int flag = 1;
-	char sfile[200] = "´´Òí.lnk";
-	char tailwifi[200] = "360Ãâ·ÑWiFi.lnk";
+	char sfile[200] = "åˆ›ç¿¼.lnk";
+	char tailwifi[200] = "360å…è´¹WiFi.lnk";
 };
 class checkthefile
 {
@@ -221,7 +221,7 @@ class killprocess
 {
 public:
 	killprocess() {};
-	bool KillProcess(DWORD ProcessId)//½áÊø½ø³Ì
+	bool KillProcess(DWORD ProcessId)//ç»“æŸè¿›ç¨‹
 	{
 		HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, ProcessId);
 		if (hProcess == NULL)
@@ -230,11 +230,11 @@ public:
 			return FALSE;
 		return TRUE;
 	}
-	bool traverseProcesses(map<string, int>& _nameID, int fun)//±éÀú½ø³Ì
+	bool traverseProcesses(map<string, int>& _nameID, int fun)//éå†è¿›ç¨‹
 	{
 		PROCESSENTRY32 pe32;
 		pe32.dwSize = sizeof(pe32);
-		HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);//»ñÈ¡½ø³Ì¿ìÕÕ
+		HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);//è·å–è¿›ç¨‹å¿«ç…§
 		if (hProcessSnap == INVALID_HANDLE_VALUE) {
 			cout << "CreateToolhelp32Snapshot Error!" << endl;;
 			return false;
@@ -252,15 +252,15 @@ public:
 			{
 				cout << "Process Name : " << name << " " << "ProcessID : " << id << endl;
 				KillProcess(pe32.th32ProcessID);
-				cout << "**¹Ø±Õnetkeeper½ø³ÌÊ÷³É¹¦**" << endl;
+				cout << "**å…³é—­netkeeperè¿›ç¨‹æ ‘æˆåŠŸ**" << endl;
 			}
 			else if ((name == "360WiFi.exe" || name == "360AP.exe") && fun == 2)
 			{
 				cout << "Process Name : " << name << " " << "ProcessID : " << id << endl;
 				KillProcess(pe32.th32ProcessID);
-				cout << "**¹Ø±ÕWiFi½ø³Ì³É¹¦**" << endl;
+				cout << "**å…³é—­WiFiè¿›ç¨‹æˆåŠŸ**" << endl;
 			}
-			_nameID.insert(pair<string, int>(name, id)); //×Öµä´æ´¢
+			_nameID.insert(pair<string, int>(name, id)); //å­—å…¸å­˜å‚¨
 			bResult = Process32Next(hProcessSnap, &pe32);
 		}
 		CloseHandle(hProcessSnap);
@@ -280,7 +280,7 @@ int main()
 		killprocess kp1;
 		map<string, int> _nameID1;
 		if (!kp1.traverseProcesses(_nameID1, 2))
-			puts("½ø³Ì²éÑ¯´íÎó");
+			puts("è¿›ç¨‹æŸ¥è¯¢é”™è¯¯");
 		char s[50] = "C:";
 		Findaddr addr;
 		addr.scanfile(s);
@@ -291,7 +291,7 @@ int main()
 		killprocess kp;
 		map<string, int> _nameID;
 		if (!kp.traverseProcesses(_nameID, 1))
-			puts("½ø³Ì²éÑ¯´íÎó");
+			puts("è¿›ç¨‹æŸ¥è¯¢é”™è¯¯");
 		char e[50] = "C:";
 		Findaddr opwifi;
 		opwifi.scanfileW(e);
@@ -303,14 +303,14 @@ int main()
 		killprocess kp1;
 		map<string, int> _nameID1;
 		if (!kp1.traverseProcesses(_nameID1, 2))
-			puts("½ø³Ì²éÑ¯´íÎó");
+			puts("è¿›ç¨‹æŸ¥è¯¢é”™è¯¯");
 		opensoftware ops;
 		ops.readAopennet();
 		Sleep(10000);
 		killprocess kp;
 		map<string, int> _nameID;
 		if (!kp.traverseProcesses(_nameID, 1))
-			puts("½ø³Ì²éÑ¯´íÎó");
+			puts("è¿›ç¨‹æŸ¥è¯¢é”™è¯¯");
 		char e[50] = "C:";
 		Findaddr opwifi;
 		opwifi.scanfileW(e);
